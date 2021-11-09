@@ -7,7 +7,7 @@ public class Test extends Exception{
 
     }
 
-    public void main(String[] args) throws URISyntaxException,URISyntaxException {
+    public void main(String[] args) throws URISyntaxException {
 
        try {
             test();
