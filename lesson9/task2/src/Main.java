@@ -1,18 +1,27 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+//
+//class IOException{
+//    StringBuilder text = new StringBuilder(1000);
+//
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         final File file = new File("D:\\TMS\\AN11_Android\\lesson9\\task2\\text.txt");
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String word;
+        readText(file);
+    }
+
+        public static void readText(File pFile){
+        try (BufferedReader reader = new BufferedReader(new FileReader(pFile))) {
+            String text;
             ArrayList<String> list = new ArrayList<>();
-            while ((word = reader.readLine()) != null) {
-                if (!word.isEmpty()) {
-                    list.add(word);
-                    System.out.println(word);
+            while ((text = reader.readLine()) != null) {
+                if (!text.isEmpty()) {
+                    list.add(text);
+                    System.out.println(text);
                 }
             }
             String[] stringArr = list.toArray(new String[0]);
@@ -20,6 +29,22 @@ public class Main {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void result(String[] pText) {
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("D:\\TMS\\AN11_Android\\lesson9\\task2\\Sentences.txt"))) {
+            for (String string : pText) {
+                if (palindromCount(string) > 0 || (numWords(string) > 2 && numWords(string) < 6)) {
+                    bufferedWriter.write(string);
+                    bufferedWriter.append('\n');
+                    bufferedWriter.flush();
+                    System.out.println(string);
+                }
+            }
+        } catch (IOException exc) {
+            exc.printStackTrace();
         }
     }
 
@@ -53,23 +78,7 @@ public class Main {
         return words.length;
     }
 
-    public static void result(String[] pText) {
 
-        var sentences = pText.toString().split("\\.");
-
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("D:\\TMS\\AN11_Android\\lesson9\\task2\\Sentences.txt"))) {
-            for (String string : sentences) {
-                if (palindromCount(string) > 0 || (numWords(string) > 2 && numWords(string) < 6)) {
-                    bufferedWriter.write(string);
-                    bufferedWriter.append('\n');
-                    bufferedWriter.flush();
-                    System.out.println(string);
-                }
-            }
-        } catch (IOException exc) {
-            exc.printStackTrace();
-        }
-    }
 }
 
 
