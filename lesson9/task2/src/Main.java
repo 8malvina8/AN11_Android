@@ -8,7 +8,7 @@ public class Main {
         readText(file);
     }
 
-        public static void readText(File pFile){
+    public static void readText(File pFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(pFile))) {
             String text;
             String result = "";
