@@ -1,14 +1,8 @@
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-//
-//class IOException{
-//    StringBuilder text = new StringBuilder(1000);
-//
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         final File file = new File("D:\\TMS\\AN11_Android\\lesson9\\task2\\text.txt");
         readText(file);
@@ -17,15 +11,16 @@ public class Main {
         public static void readText(File pFile){
         try (BufferedReader reader = new BufferedReader(new FileReader(pFile))) {
             String text;
-            ArrayList<String> list = new ArrayList<>();
+            String result = "";
             while ((text = reader.readLine()) != null) {
+
                 if (!text.isEmpty()) {
-                    list.add(text);
-                    System.out.println(text);
+                    result += text;
                 }
             }
-            String[] stringArr = list.toArray(new String[0]);
+            String[] stringArr = result.split("\\.");
             result(stringArr);
+
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -58,9 +53,7 @@ public class Main {
 
     public static int palindromCount(String sentence) { //определение количества полиндромов в предложении
 
-
-        String[] words = sentence.split("[\\s]"); //массив из слов
-
+        String[] words = sentence.split("[,:\\s]"); //массив из слов
         int count = 0;
 
         for (int i = 0; i < words.length; i++) {
