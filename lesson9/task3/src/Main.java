@@ -31,35 +31,36 @@ public class Main {
         return result;
     }
 
-        public static void findWord(String pText, String pList) {
+    public static void findWord(String pText, String pList) {
 
-            String[] sent = pText.split("[\\.\\n]");
-            int count = 0;
-            boolean isBad = false;
-            String[] badWords = pList.split("[,:;\\s]");
+        String[] sent = pText.split("[\\.\\n]");
+        int count = 0;
+        boolean isBad = false;
+        String[] badWords = pList.split("[,:;\\s]");
 
-            for (int i = 0; i < sent.length; i++) {//для предложенй
-                String[] WordsSentence = sent[i].split("[,:;\\s]");
-                for (String word:WordsSentence) { //для слов из предложения
-                    for (String bed : badWords) { //для плохих слов
-                        if (word.equalsIgnoreCase(bed)) {
-                            count++;
-                            isBad = true;
-                            System.out.println(sent[i]);
-                            break;
-                        }
-                    }if (isBad == true) {
+        for (int i = 0; i < sent.length; i++) {//для предложенй
+            String[] WordsSentence = sent[i].split("[,:;\\s]");
+            for (String word : WordsSentence) { //для слов из предложения
+                for (String bed : badWords) { //для плохих слов
+                    if (word.equalsIgnoreCase(bed)) {
+                        count++;
+                        isBad = true;
+                        System.out.println(sent[i]);
                         break;
                     }
-
+                }
+                if (isBad == true) {
+                    break;
                 }
 
             }
-            if (count == 0) {
-                System.out.println("Текст прошел проверку!");
-            } else {
-                System.out.println("Текст не прошел проверку!");
-                System.out.println("Количество предложений не прош. проверку: " + count);
+
+        }
+        if (count == 0) {
+            System.out.println("Текст прошел проверку!");
+        } else {
+            System.out.println("Текст не прошел проверку!");
+            System.out.println("Количество предложений не прош. проверку: " + count);
         }
     }
 }
